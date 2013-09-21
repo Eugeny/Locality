@@ -1,0 +1,52 @@
+﻿<Window x:Class="Locality.SpaceChangingWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"                     
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:Behaviours="clr-namespace:MahApps.Metro.Behaviours;assembly=MahApps.Metro"
+        Background="#88000000"
+        AllowsTransparency="True"
+        WindowState="Maximized"
+        WindowStyle="None"
+        Title="SpaceChangingWindow">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Colours.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.AnimatedSingleRowTabControl.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Orange.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseLight.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Locality;component/Resources/Icons.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <!--<i:Interaction.Behaviors>
+        <Behaviours:BorderlessWindowBehavior ResizeWithGrip="False" />
+    </i:Interaction.Behaviors>-->
+
+    <Grid x:Name="Stripe" HorizontalAlignment="Stretch" VerticalAlignment="Center" Background="{StaticResource AccentColorBrush}">
+        <Rectangle Fill="White" HorizontalAlignment="Center" Width="128" Height="128" VerticalAlignment="Center" Margin="-500,0,0,0">
+            <Rectangle.OpacityMask>
+                <VisualBrush Visual="{StaticResource appbar_arrow_right_left}" Stretch="UniformToFill" />
+            </Rectangle.OpacityMask>
+        </Rectangle>
+
+        <DockPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Label FontSize="24" FontWeight="ExtraLight" DockPanel.Dock="Top" HorizontalAlignment="Center">
+                <TextBlock Foreground="White">
+                    Changing space to
+                </TextBlock>
+            </Label>
+            <Label FontSize="48" FontWeight="Light" HorizontalAlignment="Center" DockPanel.Dock="Top">
+                <TextBlock Foreground="White" Name="SpaceName">
+                    Default
+                </TextBlock>
+            </Label>
+        </DockPanel>
+
+        <Controls:ProgressIndicator DockPanel.Dock="Top" Height="4" HorizontalAlignment="Stretch" ProgressColour="White" VerticalAlignment="Bottom" />
+    </Grid>
+</Window>

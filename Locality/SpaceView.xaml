@@ -1,0 +1,35 @@
+﻿<UserControl x:Class="Locality.SpaceView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <DockPanel>
+        <TextBox DockPanel.Dock="Top" Text="{Binding Name}" FontSize="24" FontWeight="Light" Width="230" Background="Transparent" BorderThickness="0" HorizontalAlignment="Left" />
+        <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+            <Button x:Name="Activate" Content="{DynamicResource appbar_check}" HorizontalAlignment="Right" Width="64" Height="64">
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}" BasedOn="{StaticResource MetroCircleButtonStyle}">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding SpaceIsActive}" Value="true">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+            <Button x:Name="Delete" Content="{DynamicResource appbar_delete}" HorizontalAlignment="Right" Width="64" Height="64" Style="{DynamicResource MetroCircleButtonStyle}" />
+        </StackPanel>
+        <StackPanel Orientation="Vertical" DockPanel.Dock="Bottom" VerticalAlignment="Bottom">
+            <Label Content="Locality will remember following settings:" />
+            <ItemsControl ItemsSource="{Binding Components}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Label FontWeight="Light" Content="{Binding Name}" />
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </StackPanel>
+    </DockPanel>
+</UserControl>

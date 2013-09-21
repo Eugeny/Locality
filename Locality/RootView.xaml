@@ -1,0 +1,96 @@
+﻿<UserControl x:Class="Locality.RootView"
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+                xmlns:cal="http://www.caliburnproject.org"
+                xmlns:locality="clr-namespace:Locality"
+                mc:Ignorable="d" 
+                d:DesignHeight="500" d:DesignWidth="500">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Colours.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/FlatButton.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.AnimatedSingleRowTabControl.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.Buttons.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Orange.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseLight.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Locality;component/Resources/Icons.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <StackPanel Orientation="Horizontal">
+        <DockPanel Width="320">
+            <DockPanel.Style>
+                <Style>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ActiveItem}" Value="{x:Null}">
+                            <DataTrigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ThicknessAnimation To="0,0,0,0" Duration="0:0:0.5" Storyboard.TargetProperty="Margin">
+                                            <ThicknessAnimation.EasingFunction>
+                                                <CubicEase />
+                                            </ThicknessAnimation.EasingFunction>
+                                        </ThicknessAnimation>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </DataTrigger.EnterActions>
+                            <DataTrigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ThicknessAnimation From="0,0,0,0" To="-320,0,0,0" Duration="0:0:0.5" Storyboard.TargetProperty="Margin">
+                                            <ThicknessAnimation.EasingFunction>
+                                                <CubicEase />
+                                            </ThicknessAnimation.EasingFunction>
+                                        </ThicknessAnimation>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </DataTrigger.ExitActions>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </DockPanel.Style>
+
+            <DockPanel Margin="20">
+                <Label Content="Spaces" FontSize="24" DockPanel.Dock="Top" FontWeight="Light" />
+                <StackPanel DockPanel.Dock="Bottom" VerticalAlignment="Bottom" HorizontalAlignment="Left">
+                    <Button x:Name="AddSpace" Width="64" Height="64" Style="{DynamicResource MetroCircleButtonStyle}" Content="{StaticResource appbar_add}" />
+                </StackPanel>
+                <ItemsControl ItemsSource="{Binding Spaces}" ScrollViewer.VerticalScrollBarVisibility="Visible">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate DataType="{x:Type locality:Space}">
+                            <Controls:Tile HorizontalAlignment="Left" Title="{Binding Name}" Width="200" Height="50" cal:Message.Attach="ActivateSpace($dataContext)">
+                                <Rectangle Fill="White" HorizontalAlignment="Right" Width="32" Height="32" Margin="0,0,-100,0">
+                                    <Rectangle.Style>
+                                        <Style TargetType="{x:Type Rectangle}">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding IsActive}" Value="false">
+                                                    <Setter Property="Visibility" Value="Collapsed" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Rectangle.Style>
+
+                                    <Rectangle.OpacityMask>
+                                        <VisualBrush Visual="{StaticResource appbar_check}" Stretch="UniformToFill" />
+                                    </Rectangle.OpacityMask>
+                                </Rectangle>
+                            </Controls:Tile>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </DockPanel>
+        </DockPanel>
+        <StackPanel Orientation="Horizontal">
+            <Button Width="64" Height="64" Margin="-20,10,0,0" x:Name="Back" Style="{DynamicResource MetroCircleButtonStyle}" Content="{StaticResource appbar_arrow_left}" VerticalAlignment="Top" />
+            <Grid Margin="5,0,20,20">
+                <Controls:TransitioningContentControl x:Name="ActiveItem" />
+            </Grid>
+        </StackPanel>
+    </StackPanel>
+</UserControl>
