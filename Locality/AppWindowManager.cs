@@ -17,13 +17,15 @@ namespace Locality
         {
             if (windowIsView)
             {
+                App.Instance.MainWindow = view as MainWindowContainer;
                 return view as MainWindowContainer;
             }
 
-            return new MainWindowContainer
+            App.Instance.MainWindow = new MainWindowContainer
             {
                 Content = view
             };
+            return App.Instance.MainWindow as MetroWindow;
         }
     }
 }

@@ -16,6 +16,7 @@ namespace Locality
         public Config Config;
         public Space ActiveSpace;
         public EventAggregator Events = new EventAggregator();
+        public Tray Tray;
 
         public List<BaseComponent> Components = new List<BaseComponent>();
         private SpaceChangingWindow spaceChangingWindow;
@@ -28,7 +29,9 @@ namespace Locality
             Components.Add(new WallpaperComponent());
             Components.Add(new DesktopComponent());
 
+            Tray = new Tray();
             Config = Config.Load();
+            
             ActiveSpace = Config.Spaces.FirstOrDefault((x) => x.Id == Config.LastActiveSpaceId);
             if (ActiveSpace == null)
             {
@@ -46,12 +49,14 @@ namespace Locality
             base.OnExit(e);
             Config.LastActiveSpaceId = ActiveSpace.Id;
             Config.Save();
+            Tray.Dispose();
         }
 
         public void ActivateSpace(Space space)
         {
             if (ActiveSpace == space)
             {
+                Tray.ShowStatus();
                 space.IsActive = true;
                 return;
             }
@@ -85,6 +90,7 @@ namespace Locality
                 {
                     if (spaceChangingWindow != null)
                         spaceChangingWindow.Hide();
+                    Tray.ShowStatus();
                 });
             }).Start();
         }

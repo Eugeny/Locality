@@ -46,6 +46,12 @@ namespace Locality
             NotifyOfPropertyChange(() => PanoramaSource);
         }
 
+        protected override void OnViewLoaded(object view)
+        {
+            base.OnViewLoaded(view);
+            App.Instance.MainWindow.Hide();
+        }
+
         public void ActivateSpace(Space space)
         {
             ActivateItem(new SpaceViewModel(space));

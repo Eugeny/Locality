@@ -9,7 +9,7 @@
                       ShowMaxRestoreButton="False"
                       ShowMinButton="False"
                       ResizeMode="NoResize"
-                      Title="Locality" Height="460" Width="300">
+                      Title="Locality" Height="460" Width="300" Icon="Resources/Icon.ico">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
