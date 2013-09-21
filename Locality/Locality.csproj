@@ -83,6 +83,7 @@
       <DependentUpon>AddSpaceView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Components\BaseComponent.cs" />
+    <Compile Include="Components\DesktopComponent.cs" />
     <Compile Include="Components\WallpaperComponent.cs" />
     <Compile Include="DataStore.cs" />
     <Compile Include="SpaceChangingWindow.xaml.cs">

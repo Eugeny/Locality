@@ -26,6 +26,7 @@ namespace Locality
             Instance = this;
 
             Components.Add(new WallpaperComponent());
+            Components.Add(new DesktopComponent());
 
             Config = Config.Load();
             ActiveSpace = Config.Spaces.FirstOrDefault((x) => x.Id == Config.LastActiveSpaceId);
