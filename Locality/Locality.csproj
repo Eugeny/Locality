@@ -52,6 +52,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Caliburn.Micro.1.5.2\lib\net45\Caliburn.Micro.dll</HintPath>
     </Reference>
+    <Reference Include="DotRAS">
+      <HintPath>..\packages\DotRAS.dll</HintPath>
+    </Reference>
     <Reference Include="MahApps.Metro, Version=0.10.0.0, Culture=neutral, PublicKeyToken=f4fb5a3c4d1e5b4f, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\MahApps.Metro.0.10.1.1\lib\net45\MahApps.Metro.dll</HintPath>
@@ -88,12 +91,21 @@
     </Compile>
     <Compile Include="Components\BaseComponent.cs" />
     <Compile Include="Components\DesktopComponent.cs" />
+    <Compile Include="Components\ProxyComponent.cs" />
     <Compile Include="Components\WallpaperComponent.cs" />
+    <Compile Include="Conditions\BaseCondition.cs" />
+    <Compile Include="Conditions\NetworkAvailableCondition.cs" />
+    <Compile Include="Conditions\NetworkAvailableConditionUI.xaml.cs">
+      <DependentUpon>NetworkAvailableConditionUI.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DataStore.cs" />
+    <Compile Include="Util\Extensions.cs" />
     <Compile Include="SpaceChangingWindow.xaml.cs">
       <DependentUpon>SpaceChangingWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Tray.cs" />
+    <Compile Include="Util\ManagedWiFi\Interop.cs" />
+    <Compile Include="Util\ManagedWiFi\WlanApi.cs" />
     <Compile Include="ViewModels\AddSpaceViewModel.cs" />
     <Compile Include="App.xaml.cs" />
     <Compile Include="AppWindowManager.cs" />
@@ -111,6 +123,10 @@
     </Compile>
     <Compile Include="ViewModels\SpaceViewModel.cs" />
     <Page Include="AddSpaceView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Conditions\NetworkAvailableConditionUI.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

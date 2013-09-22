@@ -23,10 +23,11 @@ namespace Locality
             InitializeComponent();
         }
 
-        protected override void OnClosed(EventArgs e)
+        protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
         {
-            base.OnClosed(e);
-            App.Instance.Shutdown();
+            base.OnClosing(e);
+            e.Cancel = true;
+            Hide();
         }
     }
 }

@@ -20,7 +20,7 @@ namespace Locality
             icon.Icon = Resources.Icon;
             icon.Text = "Locality";
             icon.Visible = true;
-            icon.MouseUp += icon_MouseUp;
+            icon.MouseDown += icon_MouseUp;
             menu = new ContextMenu();
             menu.Popup += delegate
             {

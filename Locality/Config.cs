@@ -27,7 +27,7 @@ namespace Locality
         }
 
         [DataMember]
-        public Dictionary<string, string> Parameters { get; set; }
+        public ParametersDictionary Parameters { get; set; }
 
         private bool isActive;
 
@@ -36,6 +36,14 @@ namespace Locality
             get { return isActive; }
             set { isActive = value; NotifyOfPropertyChange(() => IsActive); }
         }
+
+        public Space()
+        {
+            Parameters = new ParametersDictionary();
+        }
+
+        [CollectionDataContract(Name = "dict", ItemName = "key", KeyName = "key", ValueName = "value")]
+        public class ParametersDictionary : Dictionary<string, object> { }
     }
 
     [DataContract]

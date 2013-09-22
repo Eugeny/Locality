@@ -43,14 +43,13 @@ namespace Locality.Components
         public override void SaveState()
         {
             File.WriteAllText(DataStore.GetCurrentSpacePath("wallpaper.txt"), GetWallpaper());
-            /*
             Process.Start(new ProcessStartInfo
             {
                 FileName = "reg.exe",
                 Arguments = string.Format("export \"hkcu\\Control Panel\\Desktop\" \"{0}\" /y", DataStore.GetCurrentSpacePath("wallpaper.reg")),
                     CreateNoWindow = true,
                     WindowStyle = ProcessWindowStyle.Hidden,
-            }).WaitForExit();*/
+            }).WaitForExit();
         }
 
         public override void LoadState()

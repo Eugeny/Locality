@@ -1,5 +1,6 @@
 ﻿using Caliburn.Micro;
 using Locality.Components;
+using Locality.Conditions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,9 +34,16 @@ namespace Locality
             get { return App.Instance.Components; }
         }
 
+        public List<ConditionBlock> Conditions { get; set; }
+
+        // -----------------------
+
         public SpaceViewModel(Space s)
         {
             space = s;
+            Conditions = new List<ConditionBlock>();
+            foreach (var c in App.Instance.Conditions)
+                Conditions.Add(new ConditionBlock { Condition = c, UI = c.CreateUI(space) });
         }
 
         public void Activate()
@@ -54,5 +62,11 @@ namespace Locality
                     App.Instance.ActivateSpace(App.Instance.Config.Spaces[0]);
                 }
         }
+    }
+
+    public class ConditionBlock
+    {
+        public BaseCondition Condition { get; set; }
+        public UIElement UI { get; set; }
     }
 }

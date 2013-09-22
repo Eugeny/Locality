@@ -21,12 +21,22 @@
             </Button>
             <Button x:Name="Delete" Content="{DynamicResource appbar_delete}" HorizontalAlignment="Right" Width="64" Height="64" Style="{DynamicResource MetroCircleButtonStyle}" />
         </StackPanel>
-        <StackPanel Orientation="Vertical" DockPanel.Dock="Bottom" VerticalAlignment="Bottom">
+        <!--StackPanel Orientation="Vertical" DockPanel.Dock="Bottom" VerticalAlignment="Bottom">
             <Label Content="Locality will remember following settings:" />
             <ItemsControl ItemsSource="{Binding Components}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <Label FontWeight="Light" Content="{Binding Name}" />
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </StackPanel-->
+        <StackPanel Orientation="Vertical" DockPanel.Dock="Bottom" VerticalAlignment="Bottom">
+            <Label Content="Activate when" FontWeight="Light" FontSize="24" />
+            <ItemsControl ItemsSource="{Binding Conditions}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <ContentPresenter Content="{Binding UI}" />
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>

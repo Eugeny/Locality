@@ -89,7 +89,7 @@
         <StackPanel Orientation="Horizontal">
             <Button Width="64" Height="64" Margin="-20,10,0,0" x:Name="Back" Style="{DynamicResource MetroCircleButtonStyle}" Content="{StaticResource appbar_arrow_left}" VerticalAlignment="Top" />
             <Grid Margin="5,0,20,20">
-                <Controls:TransitioningContentControl x:Name="ActiveItem" />
+                <Controls:TransitioningContentControl x:Name="ActiveItem" Width="200" />
             </Grid>
         </StackPanel>
     </StackPanel>
