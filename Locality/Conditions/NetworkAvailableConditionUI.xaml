@@ -8,6 +8,6 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <StackPanel Orientation="Vertical">
         <Controls:ToggleSwitch Header="Network is available" IsChecked="{Binding Space.Parameters[network-available-enable]}" />
-        <ComboBox Name="Network" SelectedValue="{Binding Path=Space.Parameters[network-available]}" ItemsSource="{Binding Networks}" Margin="10,5" IsEditable="True" />
+        <ComboBox Name="Network" Text="{Binding Path=Space.Parameters[network-available]}" ItemsSource="{Binding Networks}" Margin="10,5" IsEditable="True" />
     </StackPanel>
 </UserControl>

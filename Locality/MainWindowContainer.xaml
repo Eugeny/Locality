@@ -8,6 +8,7 @@
                       xmlns:cal="http://www.caliburnproject.org"
                       ShowMaxRestoreButton="False"
                       ShowMinButton="False"
+                      ShowInTaskbar="false"
                       ResizeMode="NoResize"
                       Title="Locality" Height="460" Width="300" Icon="Resources/Icon.ico">
     <Window.Resources>

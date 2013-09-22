@@ -66,19 +66,22 @@ namespace Locality
         {
             if (ActiveSpace == space)
             {
-                Tray.ShowStatus();
                 space.IsActive = true;
                 return;
             }
 
-            if (spaceChangingWindow == null)
-                spaceChangingWindow = new SpaceChangingWindow();
+            Dispatcher.Invoke(delegate()
+             {
+                 if (spaceChangingWindow == null)
+                     spaceChangingWindow = new SpaceChangingWindow();
 
-            if (spaceChangingWindow != null)
-            {
-                spaceChangingWindow.SetName(space.Name);
-                spaceChangingWindow.Show();
-            }
+                 if (spaceChangingWindow != null)
+                 {
+                     spaceChangingWindow.SetName(space.Name);
+                     spaceChangingWindow.Show();
+                     spaceChangingWindow.Activate();
+                 }
+             });
 
 
             new Thread(delegate()
@@ -102,6 +105,8 @@ namespace Locality
                         spaceChangingWindow.Hide();
                     Tray.ShowStatus();
                 });
+
+                Config.Save();
             }).Start();
         }
 
@@ -125,7 +130,7 @@ namespace Locality
                         conditionStates[space][condition] = newState;
                     }
 
-                Thread.Sleep(10);
+                Thread.Sleep(5000);
             }
         }
     }

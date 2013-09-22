@@ -37,9 +37,14 @@ namespace Locality
             if (e.Button == MouseButtons.Left)
             {
                 if (App.Instance.MainWindow.IsVisible)
+                {
                     App.Instance.MainWindow.Hide();
+                }
                 else
+                {
                     App.Instance.MainWindow.Show();
+                    App.Instance.MainWindow.Activate();
+                }
             }
             else
             {

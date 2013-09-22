@@ -39,12 +39,24 @@ namespace Locality.Conditions
             return Encoding.ASCII.GetString(ssid.SSID, 0, (int)ssid.SSIDLength);
         }
 
+        private static WlanClient client = null;
+
         public static IEnumerable<string> GetActiveConnections()
         {
-            WlanClient client = null;
             try
             {
-                client = new WlanClient();
+                if (client.Interfaces == null)
+                    client = null;
+            }
+            catch
+            {
+                client = null;
+            }
+
+            try
+            {
+                if (client == null)
+                    client = new WlanClient();
             }
             catch
             {
@@ -53,11 +65,16 @@ namespace Locality.Conditions
 
             foreach (var wlanIface in client.Interfaces)
             {
-                foreach (var network in wlanIface.GetAvailableNetworkList(0))
+                Wlan.WlanAvailableNetwork[] networks = null;
+                try
                 {
+                    networks = wlanIface.GetAvailableNetworkList(0);
+                }
+                catch { continue; }
+
+                foreach (var network in networks)
                     if (network.networkConnectable)
                         yield return GetStringForSSID(network.dot11Ssid);
-                }
             }
         }
     }
