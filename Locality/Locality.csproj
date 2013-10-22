@@ -90,6 +90,7 @@
       <DependentUpon>AddSpaceView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Components\BaseComponent.cs" />
+    <Compile Include="Components\StartMenuComponent.cs" />
     <Compile Include="Components\DesktopComponent.cs" />
     <Compile Include="Components\ProxyComponent.cs" />
     <Compile Include="Components\WallpaperComponent.cs" />

@@ -31,6 +31,7 @@ namespace Locality
 
             Components.Add(new WallpaperComponent());
             Components.Add(new DesktopComponent());
+            Components.Add(new StartMenuComponent());
             Components.Add(new ProxyComponent());
 
             Conditions.Add(new NetworkAvailableCondition());
