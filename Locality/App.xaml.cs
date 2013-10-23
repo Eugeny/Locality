@@ -35,6 +35,7 @@ namespace Locality
             Components.Add(new ProxyComponent());
 
             Conditions.Add(new NetworkAvailableCondition());
+            Conditions.Add(new LocationCondition());
 
             Tray = new Tray();
             Config = Config.Load();

@@ -7,7 +7,10 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <StackPanel Orientation="Vertical">
-        <Controls:ToggleSwitch Header="Network is available" IsChecked="{Binding Space.Parameters[network-available-enable]}" />
+        <StackPanel Orientation="Horizontal">
+            <CheckBox IsChecked="{Binding Space.Parameters[network-available-enable]}" VerticalAlignment="Center" Margin="0,5,0,0" />
+            <Label Content="Network is available" FontSize="18" FontWeight="Light" />
+        </StackPanel>
         <ComboBox Name="Network" Text="{Binding Path=Space.Parameters[network-available]}" ItemsSource="{Binding Networks}" Margin="10,5" IsEditable="True" />
     </StackPanel>
 </UserControl>
