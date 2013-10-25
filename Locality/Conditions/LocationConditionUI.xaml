@@ -12,7 +12,7 @@
             <CheckBox IsChecked="{Binding Space.Parameters[location-enable]}" VerticalAlignment="Center" Margin="0,5,0,0" />
             <Label Content="Near a location" FontSize="18" FontWeight="Light" />
         </StackPanel>
-        <StackPanel Orientation="Horizontal" Margin="10">
+        <StackPanel Orientation="Horizontal" Margin="10" Visibility="{Binding Space.Parameters[location-enable], Converter={StaticResource BoolToVisibility}}">
             <!--Label Content="{Binding Space.Parameters[location-name]}" /-->
             <Button Content="Choose" Name="SelectLocation" Click="SelectLocation_Click" Style="{DynamicResource SquareButtonStyle}" />
             <Label Content=", within" />

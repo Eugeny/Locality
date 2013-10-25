@@ -43,7 +43,7 @@ namespace Locality
         }
 
         [CollectionDataContract(Name = "dict", ItemName = "key", KeyName = "key", ValueName = "value")]
-        public class ParametersDictionary : Dictionary<string, object> { }
+        public class ParametersDictionary : ObservableDictionary<string, object> { }
     }
 
     [DataContract]

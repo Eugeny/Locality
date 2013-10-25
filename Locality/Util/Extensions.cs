@@ -15,5 +15,10 @@ namespace Locality
                 return dictionary[key] = defaultValue;
             return result;
         }
+
+        public static double ToRadian(this double val)
+        {
+            return (Math.PI / 180) * val;
+        }
     }
 }

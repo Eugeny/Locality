@@ -85,48 +85,18 @@ namespace Locality.Conditions
             return new LocationConditionUI(space);
         }
 
-        private static string GetStringForSSID(Wlan.Dot11Ssid ssid)
+        public static double Between(Geoposition here, Geoposition there)
         {
-            return Encoding.ASCII.GetString(ssid.SSID, 0, (int)ssid.SSIDLength);
+            var r = 6371;
+            var dLat = (there.Coordinate.Latitude - here.Coordinate.Latitude).ToRadian();
+            var dLon = (there.Coordinate.Longitude - here.Coordinate.Longitude).ToRadian();
+            var a = Math.Sin(dLat / 2) * Math.Sin(dLat / 2) +
+                    Math.Cos(here.Coordinate.Latitude.ToRadian()) * Math.Cos(there.Coordinate.Latitude.ToRadian()) *
+                    Math.Sin(dLon / 2) * Math.Sin(dLon / 2);
+            var c = 2 * Math.Asin(Math.Min(1, Math.Sqrt(a)));
+            var d = r * c;
+            return d;
         }
 
-        private static WlanClient client = null;
-
-        public static IEnumerable<string> GetActiveConnections()
-        {
-            try
-            {
-                if (client.Interfaces == null)
-                    client = null;
-            }
-            catch
-            {
-                client = null;
-            }
-
-            try
-            {
-                if (client == null)
-                    client = new WlanClient();
-            }
-            catch
-            {
-                yield break;
-            }
-
-            foreach (var wlanIface in client.Interfaces)
-            {
-                Wlan.WlanAvailableNetwork[] networks = null;
-                try
-                {
-                    networks = wlanIface.GetAvailableNetworkList(0);
-                }
-                catch { continue; }
-
-                foreach (var network in networks)
-                    if (network.networkConnectable)
-                        yield return GetStringForSSID(network.dot11Ssid);
-            }
-        }
     }
 }
