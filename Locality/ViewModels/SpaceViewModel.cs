@@ -29,10 +29,8 @@ namespace Locality
             get { return space.IsActive; }
         }
 
-        public List<BaseComponent> Components
-        {
-            get { return App.Instance.Components; }
-        }
+        public List<ComponentBlock> Components { get; set; }
+        public List<string> AutosavedNames { get; set; }
 
         public List<ConditionBlock> Conditions { get; set; }
 
@@ -41,9 +39,20 @@ namespace Locality
         public SpaceViewModel(Space s)
         {
             space = s;
+
             Conditions = new List<ConditionBlock>();
             foreach (var c in App.Instance.Conditions)
                 Conditions.Add(new ConditionBlock { Condition = c, UI = c.CreateUI(space) });
+
+            Components = new List<ComponentBlock>();
+            AutosavedNames = new List<string>();
+            foreach (var c in App.Instance.Components)
+            {
+                if (c.Automatic)
+                    AutosavedNames.Add(c.Name);
+                try { Components.Add(new ComponentBlock { Component = c, UI = c.CreateUI(space) }); }
+                catch (NotImplementedException) { }
+            }
         }
 
         public void Activate()
@@ -67,6 +76,12 @@ namespace Locality
     public class ConditionBlock
     {
         public BaseCondition Condition { get; set; }
+        public UIElement UI { get; set; }
+    }
+
+    public class ComponentBlock
+    {
+        public BaseComponent Component { get; set; }
         public UIElement UI { get; set; }
     }
 }

@@ -33,12 +33,12 @@ namespace Locality.Conditions
         private void SelectLocation_Click(object sender, RoutedEventArgs e)
         {
             var selector = new LocationSelector();
-            selector.Location.Latitude = (double)Space.Parameters["location-lat"];
-            selector.Location.Longitude = (double)Space.Parameters["location-lon"];
+            selector.Location.Latitude = (double)(decimal)Space.Parameters["location-lat"];
+            selector.Location.Longitude = (double)(decimal)Space.Parameters["location-lon"];
             if (selector.ShowDialog().Value)
             {
-                Space.Parameters["location-lat"] = selector.Location.Latitude;
-                Space.Parameters["location-lon"] = selector.Location.Longitude;
+                Space.Parameters["location-lat"] = (decimal)selector.Location.Latitude;
+                Space.Parameters["location-lon"] = (decimal)selector.Location.Longitude;
                 Space.Parameters["location-name"] = "Location set";
             }
         }

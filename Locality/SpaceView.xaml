@@ -21,16 +21,29 @@
             </Button>
             <Button x:Name="Delete" Content="{DynamicResource appbar_delete}" HorizontalAlignment="Right" Width="64" Height="64" Style="{DynamicResource MetroCircleButtonStyle}" />
         </StackPanel>
-        <!--StackPanel Orientation="Vertical" DockPanel.Dock="Bottom" VerticalAlignment="Bottom">
-            <Label Content="Locality will remember following settings:" />
-            <ItemsControl ItemsSource="{Binding Components}">
+
+        <StackPanel Orientation="Vertical" DockPanel.Dock="Bottom" VerticalAlignment="Bottom">
+            <Label Content="Locality will also remember" FontWeight="Light" FontSize="12" />
+            <ItemsControl ItemsSource="{Binding AutosavedNames}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Label FontWeight="Light" Content="{Binding Name}" />
+                        <Label Content="{Binding}" FontSize="10" />
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
-        </StackPanel-->
+        </StackPanel>
+
+        <StackPanel Orientation="Vertical" DockPanel.Dock="Bottom" VerticalAlignment="Bottom">
+            <Label Content="When activating" FontWeight="Light" FontSize="24" />
+            <ItemsControl ItemsSource="{Binding Components}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <ContentPresenter Content="{Binding UI}" />
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </StackPanel>
+
         <StackPanel Orientation="Vertical" DockPanel.Dock="Bottom" VerticalAlignment="Bottom">
             <Label Content="Activate when" FontWeight="Light" FontSize="24" />
             <ItemsControl ItemsSource="{Binding Conditions}">

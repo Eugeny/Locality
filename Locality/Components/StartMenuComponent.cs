@@ -6,12 +6,13 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Locality.Components
 {
     public class StartMenuComponent : BaseComponent
     {
-        public string Name { get { return "Start screen layout"; } }
+        public override string Name { get { return "Start screen layout"; } }
 
         private string realPath = Path.GetFullPath(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "..", "Local", "Microsoft", "Windows", "appsFolder.itemdata-ms"));
 
@@ -43,6 +44,11 @@ namespace Locality.Components
                 WindowStyle = ProcessWindowStyle.Hidden,
                 CreateNoWindow = true,
             }).WaitForExit();
+        }
+
+        public override UIElement CreateUI(Space space)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -64,6 +64,18 @@ namespace Locality.Conditions
         {
             if (!(bool)space.Parameters.SetDefault(EnableKey, false))
                 return false;
+
+            if (LastCoordinates != null)
+            {
+                var lat = (double)(decimal)space.Parameters.SetDefault(LatKey, 0.0);
+                var lon = (double)(decimal)space.Parameters.SetDefault(LonKey, 0.0);
+                var d = Between(LastCoordinates.Coordinate, lat, lon);
+                if (d < (int)space.Parameters.SetDefault(DistanceKey, 100))
+                {
+                    return true;
+                }
+            }
+
             return false;
         }
 
@@ -85,13 +97,13 @@ namespace Locality.Conditions
             return new LocationConditionUI(space);
         }
 
-        public static double Between(Geoposition here, Geoposition there)
+        public static double Between(Geocoordinate here, double Latitude, double Longitude)
         {
             var r = 6371;
-            var dLat = (there.Coordinate.Latitude - here.Coordinate.Latitude).ToRadian();
-            var dLon = (there.Coordinate.Longitude - here.Coordinate.Longitude).ToRadian();
+            var dLat = (Latitude - here.Latitude).ToRadian();
+            var dLon = (Longitude - here.Longitude).ToRadian();
             var a = Math.Sin(dLat / 2) * Math.Sin(dLat / 2) +
-                    Math.Cos(here.Coordinate.Latitude.ToRadian()) * Math.Cos(there.Coordinate.Latitude.ToRadian()) *
+                    Math.Cos(here.Latitude.ToRadian()) * Math.Cos(Latitude.ToRadian()) *
                     Math.Sin(dLon / 2) * Math.Sin(dLon / 2);
             var c = 2 * Math.Asin(Math.Min(1, Math.Sqrt(a)));
             var d = r * c;

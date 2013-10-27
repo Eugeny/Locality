@@ -8,6 +8,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Locality.Components
 {
@@ -38,7 +39,7 @@ namespace Locality.Components
                 SPIF_UPDATEINIFILE | SPIF_SENDWININICHANGE);
         }
 
-        public string Name { get { return "Wallpaper"; } }
+        public override string Name { get { return "Wallpaper"; } }
         
         public override void SaveState()
         {
@@ -82,6 +83,11 @@ namespace Locality.Components
                     WindowStyle = ProcessWindowStyle.Hidden,
                 }).WaitForExit();
             }
+        }
+
+        public override UIElement CreateUI(Space space)
+        {
+            throw new NotImplementedException();
         }
     }
 }

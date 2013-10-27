@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Locality.Components
 {
@@ -16,7 +17,7 @@ namespace Locality.Components
         public const int INTERNET_OPTION_SETTINGS_CHANGED = 39;
         public const int INTERNET_OPTION_REFRESH = 37;
 
-        public string Name { get { return "Proxy"; } }
+        public override string Name { get { return "Proxy settings"; } }
 
         public override void SaveState()
         {
@@ -46,6 +47,11 @@ namespace Locality.Components
                 InternetSetOption(IntPtr.Zero, INTERNET_OPTION_SETTINGS_CHANGED, IntPtr.Zero, 0);
                 InternetSetOption(IntPtr.Zero, INTERNET_OPTION_REFRESH, IntPtr.Zero, 0);
             }
+        }
+
+        public override UIElement CreateUI(Space space)
+        {
+            throw new NotImplementedException();
         }
     }
 }

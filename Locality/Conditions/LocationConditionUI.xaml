@@ -9,7 +9,7 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <StackPanel Orientation="Vertical" Background="White">
         <StackPanel Orientation="Horizontal">
-            <CheckBox IsChecked="{Binding Space.Parameters[location-enable]}" VerticalAlignment="Center" Margin="0,5,0,0" />
+            <CheckBox IsChecked="{Binding Space.Parameters[location-enable]}" VerticalAlignment="Center" Margin="0,3,0,0" />
             <Label Content="Near a location" FontSize="18" FontWeight="Light" />
         </StackPanel>
         <StackPanel Orientation="Horizontal" Margin="10" Visibility="{Binding Space.Parameters[location-enable], Converter={StaticResource BoolToVisibility}}">
@@ -18,9 +18,9 @@
             <Label Content=", within" />
             <ComboBox SelectedValue="{Binding Space.Parameters[location-distance]}" IsEditable="False">
                 <ComboBox.Items>
-                    <System:Double>10</System:Double>
-                    <System:Double>100</System:Double>
-                    <System:Double>1000</System:Double>
+                    <System:Int32>10</System:Int32>
+                    <System:Int32>100</System:Int32>
+                    <System:Int32>1000</System:Int32>
                 </ComboBox.Items>
             </ComboBox>
             <Label Content="m" />

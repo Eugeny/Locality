@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Locality.Components
 {
@@ -17,7 +18,7 @@ namespace Locality.Components
         [DllImport("shell32.dll")]
         static extern void SHChangeNotify(uint wEventId, uint uFlags, uint dwItem1, uint dwItem2);
 
-        public string Name { get { return "Files on desktop"; } }
+        public override string Name { get { return "Files on desktop"; } }
 
         public override void SaveState()
         {
@@ -47,6 +48,11 @@ namespace Locality.Components
                 CreateNoWindow = true,
             }).WaitForExit();
             SHChangeNotify(0x08000000, 0, 0, 0);
+        }
+
+        public override UIElement CreateUI(Space space)
+        {
+            throw new NotImplementedException();
         }
     }
 }

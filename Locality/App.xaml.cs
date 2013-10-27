@@ -33,6 +33,8 @@ namespace Locality
             Components.Add(new DesktopComponent());
             Components.Add(new StartMenuComponent());
             Components.Add(new ProxyComponent());
+            Components.Add(new AppComponent());
+            Components.Add(new NetworkComponent());
 
             Conditions.Add(new NetworkAvailableCondition());
             Conditions.Add(new LocationCondition());
