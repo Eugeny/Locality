@@ -6,6 +6,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel.Composition;
 using System.Linq;
 using System.Text;
+using System.Windows;
 
 namespace Locality
 {
@@ -49,7 +50,16 @@ namespace Locality
         protected override void OnViewLoaded(object view)
         {
             base.OnViewLoaded(view);
-            App.Instance.MainWindow.Hide();
+            if (App.Instance.Config.IntroShown)
+            {
+                App.Instance.MainWindow.Hide();
+            }
+            else
+            {
+                App.Instance.Config.IntroShown = true;
+                if (MessageBox.Show("Would you like to read a quickstart guide?", "Locality", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                    Help();
+            }
         }
 
         public void ActivateSpace(Space space)
@@ -60,6 +70,11 @@ namespace Locality
         public void AddSpace()
         {
             ActivateItem(new AddSpaceViewModel());
+        }
+
+        public void Help()
+        {
+            new HelpWindow().Show();
         }
 
         public void Back()

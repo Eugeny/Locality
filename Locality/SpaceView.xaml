@@ -22,12 +22,12 @@
             <Button x:Name="Delete" Content="{DynamicResource appbar_delete}" HorizontalAlignment="Right" Width="64" Height="64" Style="{DynamicResource MetroCircleButtonStyle}" />
         </StackPanel>
 
-        <StackPanel Orientation="Vertical" DockPanel.Dock="Bottom" VerticalAlignment="Bottom">
-            <Label Content="Locality will also remember" FontWeight="Light" FontSize="12" />
+        <StackPanel Orientation="Vertical" DockPanel.Dock="Bottom" VerticalAlignment="Bottom" Margin="0,0,0,-50">
+            <Label Content="Locality will also remember" FontWeight="Light" FontSize="12" Opacity="0.5" />
             <ItemsControl ItemsSource="{Binding AutosavedNames}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Label Content="{Binding}" FontSize="10" />
+                        <Label Content="{Binding}" FontSize="10" Margin="0,0,0,-9" Opacity="0.5" />
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>

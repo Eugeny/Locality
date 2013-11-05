@@ -58,8 +58,9 @@
 
             <DockPanel Margin="20">
                 <Label Content="Spaces" FontSize="24" DockPanel.Dock="Top" FontWeight="Light" />
-                <StackPanel DockPanel.Dock="Bottom" VerticalAlignment="Bottom" HorizontalAlignment="Left">
+                <StackPanel DockPanel.Dock="Bottom" VerticalAlignment="Bottom" HorizontalAlignment="Left" Orientation="Horizontal">
                     <Button x:Name="AddSpace" Width="64" Height="64" Style="{DynamicResource MetroCircleButtonStyle}" Content="{StaticResource appbar_add}" />
+                    <Button x:Name="Help" Width="64" Height="64" Style="{DynamicResource MetroCircleButtonStyle}" Content="{StaticResource appbar_question}" />
                 </StackPanel>
                 <ItemsControl ItemsSource="{Binding Spaces}" ScrollViewer.VerticalScrollBarVisibility="Visible">
                     <ItemsControl.ItemTemplate>

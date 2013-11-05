@@ -55,6 +55,9 @@ namespace Locality
         [DataMember]
         public string LastActiveSpaceId { get; set; }
 
+        [DataMember]
+        public bool IntroShown { get; set; }
+
         static string FILE_NAME = ".locality.conf";
 
         public Config()
