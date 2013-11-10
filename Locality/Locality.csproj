@@ -78,24 +78,13 @@
     <ApplicationIcon>Resources\Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Caliburn.Metro, Version=0.4.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Caliburn.Metro.0.4.0\lib\net45\Caliburn.Metro.dll</HintPath>
-    </Reference>
-    <Reference Include="Caliburn.Metro.Core, Version=0.4.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Caliburn.Metro.0.4.0\lib\net45\Caliburn.Metro.Core.dll</HintPath>
-    </Reference>
     <Reference Include="Caliburn.Micro, Version=1.5.2.0, Culture=neutral, PublicKeyToken=8e5891231f2ed21f, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Caliburn.Micro.1.5.2\lib\net45\Caliburn.Micro.dll</HintPath>
     </Reference>
-    <Reference Include="DotRAS">
-      <HintPath>..\packages\DotRAS.dll</HintPath>
-    </Reference>
-    <Reference Include="MahApps.Metro, Version=0.10.0.0, Culture=neutral, PublicKeyToken=f4fb5a3c4d1e5b4f, processorArchitecture=MSIL">
+    <Reference Include="MahApps.Metro, Version=0.11.2.17, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\MahApps.Metro.0.10.1.1\lib\net45\MahApps.Metro.dll</HintPath>
+      <HintPath>..\packages\MahApps.Metro.0.11.2.17-ALPHA\lib\net45\MahApps.Metro.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Maps.MapControl.WPF">
       <HintPath>..\packages\Microsoft.Maps.MapControl.WPF.dll</HintPath>
@@ -103,6 +92,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Device" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Runtime.WindowsRuntime, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
@@ -112,7 +102,7 @@
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Caliburn.Micro.1.5.2\lib\net45\System.Windows.Interactivity.dll</HintPath>
+      <HintPath>..\packages\MahApps.Metro.0.11.2.17-ALPHA\lib\net45\System.Windows.Interactivity.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -122,7 +112,6 @@
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
-    <Reference Include="Windows" />
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -161,6 +150,7 @@
     <Compile Include="HelpWindow.xaml.cs">
       <DependentUpon>HelpWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Util\CaliburnMetroCompositionBootstrapper.cs" />
     <Compile Include="Util\Extensions.cs" />
     <Compile Include="SpaceChangingWindow.xaml.cs">
       <DependentUpon>SpaceChangingWindow.xaml</DependentUpon>
@@ -168,6 +158,7 @@
     <Compile Include="Tray.cs" />
     <Compile Include="Util\ManagedWiFi\Interop.cs" />
     <Compile Include="Util\ManagedWiFi\WlanApi.cs" />
+    <Compile Include="Util\MetroWindowManager.cs" />
     <Compile Include="Util\ObservableDictionary.cs" />
     <Compile Include="ViewModels\AddSpaceViewModel.cs" />
     <Compile Include="App.xaml.cs" />
@@ -209,10 +200,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Homepage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="MainWindowContainer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -235,9 +222,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Homepage.xaml.cs">
-      <DependentUpon>Homepage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

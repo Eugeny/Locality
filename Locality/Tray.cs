@@ -22,13 +22,6 @@ namespace Locality
             icon.Visible = true;
             icon.MouseDown += icon_MouseUp;
             menu = new ContextMenu();
-            menu.Popup += delegate
-            {
-                Dispatcher.CurrentDispatcher.BeginInvoke(new Action(delegate
-                {
-
-                }));
-            };
             icon.ContextMenu = menu;
         }
 
@@ -36,6 +29,7 @@ namespace Locality
         {
             if (e.Button == MouseButtons.Left)
             {
+                if (App.Instance.MainWindow == null) return;
                 if (App.Instance.MainWindow.IsVisible)
                 {
                     App.Instance.MainWindow.Hide();
@@ -43,6 +37,7 @@ namespace Locality
                 else
                 {
                     App.Instance.MainWindow.Show();
+                    App.Instance.MainWindow.WindowState = System.Windows.WindowState.Normal;
                     App.Instance.MainWindow.Activate();
                 }
             }

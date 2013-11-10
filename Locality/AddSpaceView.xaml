@@ -3,13 +3,16 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:cal="http://www.caliburnproject.org"
              xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <DockPanel>
-        <TextBox DockPanel.Dock="Top" Text="Create Space" FontSize="24" FontWeight="Light" Width="230" Background="Transparent" BorderThickness="0"  HorizontalAlignment="Left"/>
+        <Label DockPanel.Dock="Top" Content="Create Profile" FontSize="24" FontWeight="Light" Width="230" Background="Transparent" BorderThickness="0"  HorizontalAlignment="Left"/>
         <StackPanel Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="7,0">
-            <TextBox x:Name="SpaceName" Width="160" Margin="0,10" Controls:TextboxHelper.Watermark="Space name" />
+            <TextBox x:Name="SpaceName" Width="160" Margin="0,10" Controls:TextboxHelper.Watermark="Space name"
+                     cal:Message.Attach="[Event KeyDown] = [Action KeyPressed($executionContext)]" />
             <Button x:Name="Done" Content="Create" Width="120"  Style="{DynamicResource SquareButtonStyle}" HorizontalAlignment="Left" />
         </StackPanel>
     </DockPanel>

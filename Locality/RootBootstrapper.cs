@@ -1,4 +1,5 @@
 ﻿using Caliburn.Metro;
+using Caliburn.Metro.Core;
 using Caliburn.Micro;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,12 @@ namespace Locality
         protected override void Configure()
         {
             base.Configure();
+        }
+        protected override object GetInstance(Type serviceType, string key)
+        {
+            if (serviceType == typeof(IWindowManager))
+                return new AppWindowManager();
+            return base.GetInstance(serviceType, key);
         }
     }
 }

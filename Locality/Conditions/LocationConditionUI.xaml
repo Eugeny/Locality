@@ -8,19 +8,16 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <StackPanel Orientation="Vertical" Background="White">
-        <StackPanel Orientation="Horizontal">
-            <CheckBox IsChecked="{Binding Space.Parameters[location-enable]}" VerticalAlignment="Center" Margin="0,3,0,0" />
-            <Label Content="Near a location" FontSize="18" FontWeight="Light" />
-        </StackPanel>
+        <CheckBox IsChecked="{Binding Space.Parameters[location-enable]}" VerticalAlignment="Center" Margin="0,3,0,0" 
+            Content="Near a location" FontSize="18" FontWeight="Light" />
         <StackPanel Orientation="Horizontal" Margin="10" Visibility="{Binding Space.Parameters[location-enable], Converter={StaticResource BoolToVisibility}}">
-            <!--Label Content="{Binding Space.Parameters[location-name]}" /-->
             <Button Content="Choose" Name="SelectLocation" Click="SelectLocation_Click" Style="{DynamicResource SquareButtonStyle}" />
             <Label Content=", within" />
-            <ComboBox SelectedValue="{Binding Space.Parameters[location-distance]}" IsEditable="False">
+            <ComboBox SelectedValue="{Binding Space.Parameters[location-distance]}" IsEditable="False" Width="70">
                 <ComboBox.Items>
-                    <System:Int32>10</System:Int32>
-                    <System:Int32>100</System:Int32>
-                    <System:Int32>1000</System:Int32>
+                    <System:String>10</System:String>
+                    <System:String>100</System:String>
+                    <System:String>1000</System:String>
                 </ComboBox.Items>
             </ComboBox>
             <Label Content="m" />

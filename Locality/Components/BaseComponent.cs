@@ -14,6 +14,8 @@ namespace Locality.Components
 
         public abstract UIElement CreateUI(Space space);
 
+        public virtual bool IsAvailable() { return true; }
+
         public abstract void SaveState();
 
         public abstract void LoadState();

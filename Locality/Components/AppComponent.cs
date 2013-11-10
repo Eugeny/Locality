@@ -18,7 +18,7 @@ namespace Locality.Components
         public override UIElement CreateUI(Space space)
         {
             space.Parameters.SetDefault(EnableKey, false);
-            space.Parameters.SetDefault(PathKey, @"c:\windows\notepad.exe");
+            space.Parameters.SetDefault(PathKey, @"");
             return new AppComponentUI(space);
         }
 
@@ -28,8 +28,12 @@ namespace Locality.Components
 
         public override void LoadState()
         {
-            if ((bool)App.Instance.ActiveSpace.Parameters[EnableKey])
-                Process.Start((string)App.Instance.ActiveSpace.Parameters[PathKey]);
+            if ((bool)App.Instance.ActiveSpace.Parameters.SetDefault(EnableKey, false))
+                try
+                {
+                    Process.Start((string)App.Instance.ActiveSpace.Parameters[PathKey]);
+                }
+                catch { }
         }
     }
 }

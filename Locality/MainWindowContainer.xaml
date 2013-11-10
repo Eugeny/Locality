@@ -8,52 +8,18 @@
                       xmlns:cal="http://www.caliburnproject.org"
                       ShowMaxRestoreButton="False"
                       ShowMinButton="False"
+                      WindowStartupLocation="CenterScreen"
                       ResizeMode="NoResize"
-                      Title="Locality" Height="460" Width="300" Icon="Resources/Icon.ico">
+                      WindowState ="Minimized"                
+                      BorderBrush="Black" BorderThickness="1"
+                      Title="Locality" Height="460" Width="300" MaxWidth="300" Icon="Resources/Icon.ico">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Colours.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.AnimatedSingleRowTabControl.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Orange.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseLight.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/Locality;component/Resources/Icons.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
     <i:Interaction.Behaviors>
         <Behaviours:BorderlessWindowBehavior ResizeWithGrip="False" />
     </i:Interaction.Behaviors>
-    <!--Controls:MetroWindow.WindowCommands>
-        <Controls:WindowCommands>
-            <Button Content="settings" cal:Message.Attach="OpenSettings"/>
-            <Button>
-                <StackPanel Orientation="Horizontal">
-                    <Rectangle Width="20" Height="20">
-                        <Rectangle.Resources>
-                            <SolidColorBrush x:Key="BlackBrush" Color="White" />
-                        </Rectangle.Resources>
-                        <Rectangle.Fill>
-                            <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_cupcake}" />
-                        </Rectangle.Fill>
-                    </Rectangle>
-                </StackPanel>
-            </Button>
-        </Controls:WindowCommands>
-    </Controls:MetroWindow.WindowCommands>
-    <Controls:MetroWindow.Flyouts>
-        <Controls:Flyout Header="Bakery" Background="#9f000000" Position="Right" IsOpen="{Binding IsSettingsFlyoutOpen}">
-            <StackPanel>
-                <Controls:Tile Title="My _Cupcakes" Count="23">
-                    <Controls:MetroImage Source="{StaticResource appbar_cupcake}" />
-                </Controls:Tile>
-            </StackPanel>
-        </Controls:Flyout>
-
-    </Controls:MetroWindow.Flyouts-->
-    <Grid>
-
-    </Grid>
 </Controls:MetroWindow>

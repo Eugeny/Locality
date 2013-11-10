@@ -1,6 +1,7 @@
 ﻿<Window x:Class="Locality.HelpWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Help" Height="640" Width="500" WindowStartupLocation="CenterOwner" Icon="Resources/Icon.ico">
+        WindowStartupLocation="CenterScreen"
+        Title="Help" Height="640" Width="500" Icon="Resources/Icon.ico">
     <WebBrowser Name="Web" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
 </Window>

@@ -29,6 +29,11 @@ namespace Locality
             get { return space.IsActive; }
         }
 
+        public bool SpaceIsLastOne
+        {
+            get { return App.Instance.Config.Spaces.Count == 1; }
+        }
+
         public List<ComponentBlock> Components { get; set; }
         public List<string> AutosavedNames { get; set; }
 
@@ -50,7 +55,12 @@ namespace Locality
             {
                 if (c.Automatic)
                     AutosavedNames.Add(c.Name);
-                try { Components.Add(new ComponentBlock { Component = c, UI = c.CreateUI(space) }); }
+                try
+                {
+                    var ui = c.CreateUI(space);
+                    if (ui != null)
+                        Components.Add(new ComponentBlock { Component = c, UI = ui });
+                }
                 catch (NotImplementedException) { }
             }
         }

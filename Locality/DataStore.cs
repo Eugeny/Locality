@@ -10,17 +10,19 @@ namespace Locality
     public static class DataStore
     {
         private static string root = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Locality");
+        private static FileStream lockfile;
 
         static DataStore()
         {
             if (!Directory.Exists(root))
                 Directory.CreateDirectory(root);
+            lockfile = File.Open(GetPath(".lock"), FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.None);
         }
 
         public static void CreatePath(string path)
         {
             if (!Directory.Exists(GetPath(path)))
-            Directory.CreateDirectory(GetPath(path));
+                Directory.CreateDirectory(GetPath(path));
         }
 
         public static string GetPath(string file)

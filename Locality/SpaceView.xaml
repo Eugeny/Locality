@@ -5,54 +5,64 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <DockPanel>
-        <TextBox DockPanel.Dock="Top" Text="{Binding Name}" FontSize="24" FontWeight="Light" Width="230" Background="Transparent" BorderThickness="0" HorizontalAlignment="Left" />
-        <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom">
-            <Button x:Name="Activate" Content="{DynamicResource appbar_check}" HorizontalAlignment="Right" Width="64" Height="64">
-                <Button.Style>
-                    <Style TargetType="{x:Type Button}" BasedOn="{StaticResource MetroCircleButtonStyle}">
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding SpaceIsActive}" Value="true">
-                                <Setter Property="Visibility" Value="Collapsed" />
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </Button.Style>
-            </Button>
-            <Button x:Name="Delete" Content="{DynamicResource appbar_delete}" HorizontalAlignment="Right" Width="64" Height="64" Style="{DynamicResource MetroCircleButtonStyle}" />
-        </StackPanel>
+    <ScrollViewer VerticalScrollBarVisibility="Auto" >
+        <DockPanel>
+            <Label DockPanel.Dock="Top" Content="{Binding Name}" FontSize="24" FontWeight="Light" Width="250" Background="Transparent" BorderThickness="0" HorizontalAlignment="Left" />
+            <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Panel.ZIndex="2">
+                <Button x:Name="Activate" Content="{DynamicResource appbar_check}" HorizontalAlignment="Right" Width="64" Height="64">
+                    <Button.Style>
+                        <Style TargetType="{x:Type Button}" BasedOn="{StaticResource MetroCircleButtonStyle}">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding SpaceIsActive}" Value="true">
+                                    <Setter Property="IsEnabled" Value="false" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+                <Button x:Name="Delete" Content="{DynamicResource appbar_delete}" HorizontalAlignment="Right" Width="64" Height="64">
+                    <Button.Style>
+                        <Style TargetType="{x:Type Button}" BasedOn="{StaticResource MetroCircleButtonStyle}">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding SpaceIsLastOne}" Value="true">
+                                    <Setter Property="IsEnabled" Value="false" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+            </StackPanel>
 
-        <StackPanel Orientation="Vertical" DockPanel.Dock="Bottom" VerticalAlignment="Bottom" Margin="0,0,0,-50">
-            <Label Content="Locality will also remember" FontWeight="Light" FontSize="12" Opacity="0.5" />
-            <ItemsControl ItemsSource="{Binding AutosavedNames}">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <Label Content="{Binding}" FontSize="10" Margin="0,0,0,-9" Opacity="0.5" />
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-        </StackPanel>
+            <StackPanel Orientation="Vertical" DockPanel.Dock="Bottom" VerticalAlignment="Bottom" Margin="0,0,0,-50">
+                <Label Content="Locality will also remember" FontWeight="Light" FontSize="12" Opacity="0.5" />
+                <ItemsControl ItemsSource="{Binding AutosavedNames}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Label Content="{Binding}" FontSize="9" Margin="0,0,0,-9" Opacity="0.5" />
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </StackPanel>
 
-        <StackPanel Orientation="Vertical" DockPanel.Dock="Bottom" VerticalAlignment="Bottom">
-            <Label Content="When activating" FontWeight="Light" FontSize="24" />
-            <ItemsControl ItemsSource="{Binding Components}">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <ContentPresenter Content="{Binding UI}" />
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-        </StackPanel>
+            <StackPanel Orientation="Vertical"  VerticalAlignment="Bottom" DockPanel.Dock="Bottom">
+                <Label Content="Activate when" FontWeight="Light" FontSize="24" />
+                <ItemsControl ItemsSource="{Binding Conditions}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <ContentPresenter Content="{Binding UI}" />
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
 
-        <StackPanel Orientation="Vertical" DockPanel.Dock="Bottom" VerticalAlignment="Bottom">
-            <Label Content="Activate when" FontWeight="Light" FontSize="24" />
-            <ItemsControl ItemsSource="{Binding Conditions}">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <ContentPresenter Content="{Binding UI}" />
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-        </StackPanel>
-    </DockPanel>
+                <Label Content="When activating" FontWeight="Light" FontSize="24" />
+                <ItemsControl ItemsSource="{Binding Components}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <ContentPresenter Content="{Binding UI}" />
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </StackPanel>
+        </DockPanel>
+    </ScrollViewer>
 </UserControl>

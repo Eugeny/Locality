@@ -1,8 +1,10 @@
 ﻿using Caliburn.Micro;
 using Locality.Components;
 using Locality.Conditions;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -27,14 +29,24 @@ namespace Locality
 
         public App()
         {
+            if (Process.GetProcessesByName(Process.GetCurrentProcess().ProcessName).Length > 1)
+            {
+                Shutdown();
+                return;
+            }
+
             Instance = this;
+            SetAutostart();
 
             Components.Add(new WallpaperComponent());
-            Components.Add(new DesktopComponent());
+            if (!System.Windows.Forms.Application.ExecutablePath.StartsWith(Environment.GetFolderPath(Environment.SpecialFolder.Desktop)))
+                if (new DesktopComponent().IsAvailable())
+                    Components.Add(new DesktopComponent());
             Components.Add(new StartMenuComponent());
             Components.Add(new ProxyComponent());
             Components.Add(new AppComponent());
             Components.Add(new NetworkComponent());
+
 
             Conditions.Add(new NetworkAvailableCondition());
             Conditions.Add(new LocationCondition());
@@ -56,6 +68,14 @@ namespace Locality
             var checker = new Thread(Checker);
             checker.Start();
             checker.IsBackground = true;
+        }
+
+        private void SetAutostart()
+        {
+            string KEY = "Locality";
+            var rkApp = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
+            if (rkApp.GetValue(KEY) == null)
+                rkApp.SetValue(KEY, System.Windows.Forms.Application.ExecutablePath);
         }
 
         protected override void OnExit(ExitEventArgs e)

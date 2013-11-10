@@ -6,7 +6,9 @@ using System.Collections.ObjectModel;
 using System.ComponentModel.Composition;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Windows;
+using System.Windows.Threading;
 
 namespace Locality
 {
@@ -56,13 +58,23 @@ namespace Locality
             }
             else
             {
+                App.Instance.MainWindow.WindowState = System.Windows.WindowState.Normal;
+                App.Instance.MainWindow.Activate();
                 App.Instance.Config.IntroShown = true;
-                if (MessageBox.Show("Would you like to read a quickstart guide?", "Locality", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
-                    Help();
+                new Thread(delegate()
+                {
+                    if (MessageBox.Show(App.Instance.MainWindow, "Would you like to read a quickstart guide?", "Locality", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                        Help();
+                }).Start();
             }
         }
 
         public void ActivateSpace(Space space)
+        {
+            App.Instance.ActivateSpace(space);
+        }
+
+        public void EditSpace(Space space)
         {
             ActivateItem(new SpaceViewModel(space));
         }
@@ -74,7 +86,10 @@ namespace Locality
 
         public void Help()
         {
-            new HelpWindow().Show();
+            Application.Current.Dispatcher.Invoke(delegate()
+            {
+                HelpWindow.Display();
+            });
         }
 
         public void Back()

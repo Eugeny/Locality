@@ -19,8 +19,22 @@ namespace Locality
     /// </summary>
     public partial class HelpWindow : Window
     {
+        private static HelpWindow Instance;
+
+        public static void Display()
+        {
+            if (Instance != null && Instance.IsVisible)
+            {
+                Instance.Show();
+                Instance.Activate();
+            }
+            else
+                new HelpWindow().Show();
+        }
+
         public HelpWindow()
         {
+            Instance = this;
             InitializeComponent();
             Web.NavigateToString(Properties.Resources.Help);
         }

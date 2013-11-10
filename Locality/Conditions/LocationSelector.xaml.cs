@@ -29,8 +29,8 @@ namespace Locality.Conditions
             var center = new Location();
             if (LocationCondition.LastCoordinates != null)
             {
-                center.Latitude = LocationCondition.LastCoordinates.Coordinate.Latitude;
-                center.Longitude = LocationCondition.LastCoordinates.Coordinate.Longitude;
+                center.Latitude = LocationCondition.LastCoordinates.Location.Latitude;
+                center.Longitude = LocationCondition.LastCoordinates.Location.Longitude;
             }
             Map.Center = center;
             Map.ZoomLevel = 15;
@@ -44,11 +44,21 @@ namespace Locality.Conditions
             };
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void Save(object sender, RoutedEventArgs e)
         {
             Location = pin.Location;
             DialogResult = true;
             Close();
+        }
+
+        private void ZoomIn(object sender, RoutedEventArgs e)
+        {
+            Map.ZoomLevel += 1;
+        }
+
+        private void ZoomOut(object sender, RoutedEventArgs e)
+        {
+            Map.ZoomLevel -= 1;
         }
     }
 }

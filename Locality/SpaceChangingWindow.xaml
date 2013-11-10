@@ -12,9 +12,8 @@
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Colours.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Colors.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.AnimatedSingleRowTabControl.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Orange.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseLight.xaml" />
@@ -37,7 +36,7 @@
         <DockPanel HorizontalAlignment="Center" VerticalAlignment="Center">
             <Label FontSize="24" FontWeight="ExtraLight" DockPanel.Dock="Top" HorizontalAlignment="Center">
                 <TextBlock Foreground="White">
-                    Changing space to
+                    Changing profile to
                 </TextBlock>
             </Label>
             <Label FontSize="48" FontWeight="Light" HorizontalAlignment="Center" DockPanel.Dock="Top">
@@ -47,6 +46,6 @@
             </Label>
         </DockPanel>
 
-        <Controls:ProgressIndicator DockPanel.Dock="Top" Height="4" HorizontalAlignment="Stretch" ProgressColour="White" VerticalAlignment="Bottom" />
+        <Controls:ProgressIndicator DockPanel.Dock="Top" Height="4" HorizontalAlignment="Stretch" ProgressColor="White" VerticalAlignment="Bottom" />
     </Grid>
 </Window>

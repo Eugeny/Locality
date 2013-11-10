@@ -51,7 +51,7 @@ namespace Locality.Components
 
         public override UIElement CreateUI(Space space)
         {
-            throw new NotImplementedException();
+            return null;
         }
     }
 }

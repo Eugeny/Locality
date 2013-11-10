@@ -32,8 +32,7 @@ namespace Locality.Components
 
         private void Select_Click(object sender, RoutedEventArgs e)
         {
-            var ofd = new OpenFileDialog();
-            ofd.FileName = "*.exe";
+            var ofd = new OpenFileDialog { Filter = "Executables|*.exe;*.lnk" };
             if (ofd.ShowDialog().Value)
             {
                 Space.Parameters["launch-path"] = ofd.FileName;

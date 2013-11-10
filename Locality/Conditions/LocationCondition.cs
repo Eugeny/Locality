@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
-using Windows.Devices.Geolocation;
+using System.Device.Location;
 
 namespace Locality.Conditions
 {
@@ -18,46 +18,42 @@ namespace Locality.Conditions
         private static string DistanceKey = "location-distance";
         private static string NameKey = "location-name";
         private static string EnableKey = "location-enable";
+        private static GeoCoordinateWatcher geo;
 
         public override string Name
         {
             get { return "Near a location"; }
         }
 
-        private static Geoposition lastCoords;
+        private static GeoPosition<GeoCoordinate> lastCoords;
 
-        public static Geoposition LastCoordinates
+        public static GeoPosition<GeoCoordinate> LastCoordinates
         {
             get { return lastCoords; }
         }
 
         static LocationCondition()
         {
-            var geo = new Geolocator();
-            geo.ReportInterval = 10;
-            geo.DesiredAccuracy = PositionAccuracy.High;
-            geo.GetGeopositionAsync();
-            geo.PositionChanged += geo_PositionChanged;
-            var worker = new Thread(async delegate()
-              {
-                  while (true)
-                  {
-                      Thread.Sleep(10000);
-                      try
-                      {
-                          await geo.GetGeopositionAsync();
-                      }
-                      catch { }
-                  }
-              });
-            worker.IsBackground = true;
-            worker.Start();
+            while (true)
+            {
+                geo = new GeoCoordinateWatcher(GeoPositionAccuracy.High);
+                geo.PositionChanged += geo_PositionChanged;
+                if (!geo.TryStart(true, new TimeSpan(0, 0, 5)))
+                {
+                    MessageBox.Show("Locality requires location access to function properly.", "Locality", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                    Environment.Exit(0);
+                }
+                else
+                {
+                    break;
+                }
+            }
         }
 
-        static void geo_PositionChanged(Geolocator sender, PositionChangedEventArgs args)
+        static void geo_PositionChanged(object sender, GeoPositionChangedEventArgs<GeoCoordinate> e)
         {
-            lastCoords = args.Position;
-            Console.WriteLine(lastCoords.Coordinate.Latitude + " " + lastCoords.Coordinate.Longitude);
+            lastCoords = e.Position;
+            Console.WriteLine(lastCoords.Location.Latitude + " " + lastCoords.Location.Longitude);
         }
 
         public override bool Check(Space space)
@@ -67,10 +63,10 @@ namespace Locality.Conditions
 
             if (LastCoordinates != null)
             {
-                var lat = (double)(decimal)space.Parameters.SetDefault(LatKey, 0.0);
-                var lon = (double)(decimal)space.Parameters.SetDefault(LonKey, 0.0);
-                var d = Between(LastCoordinates.Coordinate, lat, lon);
-                if (d < (int)space.Parameters.SetDefault(DistanceKey, 100))
+                var lat = Double.Parse((string)space.Parameters.SetDefault(LatKey, "0.0"));
+                var lon = Double.Parse((string)space.Parameters.SetDefault(LonKey, "0.0"));
+                var d = Between(LastCoordinates.Location, lat, lon);
+                if (d < Double.Parse((string)space.Parameters.SetDefault(DistanceKey, "100")))
                 {
                     return true;
                 }
@@ -83,21 +79,21 @@ namespace Locality.Conditions
         {
             if (LastCoordinates != null)
             {
-                space.Parameters.SetDefault(LatKey, LastCoordinates.Coordinate.Latitude);
-                space.Parameters.SetDefault(LonKey, LastCoordinates.Coordinate.Longitude);
+                space.Parameters.SetDefault(LatKey, LastCoordinates.Location.Latitude.ToString());
+                space.Parameters.SetDefault(LonKey, LastCoordinates.Location.Longitude.ToString());
             }
             else
             {
-                space.Parameters.SetDefault(LatKey, 0.0);
-                space.Parameters.SetDefault(LonKey, 0.0);
+                space.Parameters.SetDefault(LatKey, "0.0");
+                space.Parameters.SetDefault(LonKey, "0.0");
             }
-            space.Parameters.SetDefault(DistanceKey, 100.0);
+            space.Parameters.SetDefault(DistanceKey, "100");
             space.Parameters.SetDefault(NameKey, "Location not set");
             space.Parameters.SetDefault(EnableKey, false);
             return new LocationConditionUI(space);
         }
 
-        public static double Between(Geocoordinate here, double Latitude, double Longitude)
+        public static double Between(GeoCoordinate here, double Latitude, double Longitude)
         {
             var r = 6371;
             var dLat = (Latitude - here.Latitude).ToRadian();
