@@ -61,11 +61,8 @@ namespace Locality
                 App.Instance.MainWindow.WindowState = System.Windows.WindowState.Normal;
                 App.Instance.MainWindow.Activate();
                 App.Instance.Config.IntroShown = true;
-                new Thread(delegate()
-                {
                     if (MessageBox.Show(App.Instance.MainWindow, "Would you like to read a quickstart guide?", "Locality", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                         Help();
-                }).Start();
             }
         }
 

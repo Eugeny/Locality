@@ -58,7 +58,7 @@ namespace Locality
             if (ActiveSpace == null)
             {
                 if (Config.Spaces.Count == 0)
-                    Config.Spaces.Add(new Space { Name = "Default" });
+                    Config.Spaces.Add(new Space { Name = "Home" });
                 ActiveSpace = Config.Spaces[0];
             }
             ActivateSpace(ActiveSpace);

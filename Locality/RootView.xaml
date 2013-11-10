@@ -51,7 +51,7 @@
                     <ItemsControl ItemsSource="{Binding Spaces}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate DataType="{x:Type locality:Space}">
-                                <Controls:Tile HorizontalAlignment="Left" TextBlock.LineHeight="100"  Title="{Binding Name}" Width="200" Height="50" cal:Message.Attach="ActivateSpace($dataContext)">
+                                <Controls:Tile HorizontalAlignment="Left" TextBlock.LineHeight="100"  Title="{Binding Name}" Width="200" Height="50" cal:Message.Attach="EditSpace($dataContext)">
                                     <Rectangle Fill="White" HorizontalAlignment="Right" Width="32" Height="32" Margin="0,0,-105,0">
                                         <Rectangle.Style>
                                             <Style TargetType="{x:Type Rectangle}">

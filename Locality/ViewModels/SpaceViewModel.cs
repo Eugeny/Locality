@@ -74,7 +74,7 @@ namespace Locality
         public void Delete()
         {
             if (App.Instance.Config.Spaces.Count > 1)
-                if (MessageBox.Show("Delete this space?", "Locality", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+                if (MessageBox.Show("Delete this profile?", "Locality", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
                 {
                     App.Instance.Config.Spaces.Remove(space);
                     (Parent as RootViewModel).Back();

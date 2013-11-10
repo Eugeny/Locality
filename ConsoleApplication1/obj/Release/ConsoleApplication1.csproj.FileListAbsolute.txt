@@ -1,0 +1,6 @@
+C:\Users\Eugeny\Documents\Locality\ConsoleApplication1\bin\Release\ConsoleApplication1.exe.config
+C:\Users\Eugeny\Documents\Locality\ConsoleApplication1\bin\Release\ConsoleApplication1.exe
+C:\Users\Eugeny\Documents\Locality\ConsoleApplication1\bin\Release\ConsoleApplication1.pdb
+C:\Users\Eugeny\Documents\Locality\ConsoleApplication1\obj\Release\ConsoleApplication1.csprojResolveAssemblyReference.cache
+C:\Users\Eugeny\Documents\Locality\ConsoleApplication1\obj\Release\ConsoleApplication1.exe
+C:\Users\Eugeny\Documents\Locality\ConsoleApplication1\obj\Release\ConsoleApplication1.pdb
