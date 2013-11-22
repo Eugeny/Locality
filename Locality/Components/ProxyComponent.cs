@@ -35,11 +35,10 @@ namespace Locality.Components
             var path = DataStore.GetCurrentSpacePath("proxy.reg");
             if (File.Exists(path))
             {
-
                 Process.Start(new ProcessStartInfo
                 {
                     FileName = "reg.exe",
-                    Arguments = string.Format(@"import {0}", path),
+                    Arguments = string.Format("import \"{0}\"", path),
                     CreateNoWindow = true,
                     WindowStyle = ProcessWindowStyle.Hidden,
                 }).WaitForExit();

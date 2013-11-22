@@ -7,6 +7,7 @@
         Background="#88000000"
         AllowsTransparency="True"
         WindowState="Maximized"
+        Topmost="true"
         WindowStyle="None"
         Title="SpaceChangingWindow">
     <Window.Resources>

@@ -53,7 +53,17 @@ namespace Locality.Components
             var saved = DataStore.GetCurrentSpacePath("Desktop");
             if (!Directory.Exists(saved))
                 Directory.CreateDirectory(saved);
-            Directory.Delete(real);
+
+            try
+            {
+                Directory.Delete(real);
+            }
+            catch
+            {
+                Enabled = false;
+                return;
+            }
+
             Process.Start(new ProcessStartInfo
             {
                 FileName = "cmd.exe",

@@ -78,7 +78,7 @@ namespace Locality.Components
                 Process.Start(new ProcessStartInfo
                 {
                     FileName = "reg.exe",
-                    Arguments = string.Format(@"import {0}", path),
+                    Arguments = string.Format("import \"{0}\"", path),
                     CreateNoWindow = true,
                     WindowStyle = ProcessWindowStyle.Hidden,
                 }).WaitForExit();

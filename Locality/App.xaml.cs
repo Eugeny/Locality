@@ -5,7 +5,10 @@ using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
+using System.Management;
+using System.Security.Principal;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -29,6 +32,18 @@ namespace Locality
 
         public App()
         {
+            if (!Environment.CommandLine.Contains("/admin"))
+            {
+                Process.Start(new ProcessStartInfo
+                {
+                    FileName = System.Windows.Forms.Application.ExecutablePath,
+                    Arguments = "/admin",
+                    Verb = "runas",
+                    UseShellExecute = true,
+                });
+                Environment.Exit(0);
+            }
+            Thread.Sleep(500);
             if (Process.GetProcessesByName(Process.GetCurrentProcess().ProcessName).Length > 1)
             {
                 Shutdown();
@@ -43,9 +58,10 @@ namespace Locality
                 if (new DesktopComponent().IsAvailable())
                     Components.Add(new DesktopComponent());
             Components.Add(new StartMenuComponent());
+            Components.Add(new TaskbarComponent());
             Components.Add(new ProxyComponent());
-            Components.Add(new AppComponent());
             Components.Add(new NetworkComponent());
+            Components.Add(new AppComponent());
 
 
             Conditions.Add(new NetworkAvailableCondition());
@@ -70,18 +86,39 @@ namespace Locality
             checker.IsBackground = true;
         }
 
+        public bool IsUserAdministrator()
+        {
+            //bool value to hold our return value
+            bool isAdmin;
+            try
+            {
+                //get the currently logged in user
+                WindowsIdentity user = WindowsIdentity.GetCurrent();
+                WindowsPrincipal principal = new WindowsPrincipal(user);
+                isAdmin = principal.IsInRole(WindowsBuiltInRole.Administrator);
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                isAdmin = false;
+            }
+            catch (Exception ex)
+            {
+                isAdmin = false;
+            }
+            return isAdmin;
+        }
+
         private void SetAutostart()
         {
             string KEY = "Locality";
             var rkApp = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
-            if (rkApp.GetValue(KEY) == null)
-                rkApp.SetValue(KEY, System.Windows.Forms.Application.ExecutablePath);
+            //if (rkApp.GetValue(KEY) == null)
+            rkApp.SetValue(KEY, System.Windows.Forms.Application.ExecutablePath);
         }
 
         protected override void OnExit(ExitEventArgs e)
         {
             base.OnExit(e);
-            Config.LastActiveSpaceId = ActiveSpace.Id;
             Config.Save();
             Tray.Dispose();
         }
@@ -114,6 +151,8 @@ namespace Locality
                     c.SaveState();
 
                 ActiveSpace = space;
+                Config.LastActiveSpaceId = ActiveSpace.Id;
+
                 foreach (var s in Config.Spaces)
                     s.IsActive = false;
                 space.IsActive = true;

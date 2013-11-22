@@ -31,9 +31,11 @@ namespace Locality.Conditions
 
         private void SelectLocation_Click(object sender, RoutedEventArgs e)
         {
-            var selector = new LocationSelector();
-            selector.Location.Latitude = double.Parse((string)Space.Parameters["location-lat"]);
-            selector.Location.Longitude = double.Parse((string)Space.Parameters["location-lon"]);
+            var selector = new LocationSelector(
+                double.Parse((string)Space.Parameters["location-lat"]),
+                double.Parse((string)Space.Parameters["location-lon"])
+            );
+
             if (selector.ShowDialog().Value)
             {
                 Space.Parameters["location-lat"] = selector.Location.Latitude.ToString();

@@ -39,7 +39,7 @@ namespace Locality
                 MessageBox.Show("Profile name is empty", "Locality", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
-            if (SpaceName.Length > 255)
+            if (SpaceName.Length > 30)
             {
                 MessageBox.Show("Profile name is too long", "Locality", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;

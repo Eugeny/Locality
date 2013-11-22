@@ -36,14 +36,14 @@ namespace Locality
 
         public RootViewModel()
         {
-            DisplayName = "Locality";
+            DisplayName = "Locality [Demo]";
         }
 
         protected override void OnInitialize()
         {
             Spaces = App.Instance.Config.Spaces;
             panoramaSource = new ObservableCollection<PanoramaGroup>();
-            var g = new PanoramaGroup("Spaces");
+            var g = new PanoramaGroup("Profiles");
             panoramaSource.Add(g);
             g.SetSource(spaces);
             NotifyOfPropertyChange(() => PanoramaSource);

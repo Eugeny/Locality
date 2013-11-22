@@ -341,6 +341,7 @@
 		<col def="S0">ISDotNetInstallerArgsCommit</col>
 		<col def="S0">ISDotNetInstallerArgsUninstall</col>
 		<col def="S0">ISDotNetInstallerArgsRollback</col>
+		<row><td>ISX_DEFAULTCOMPONENT1</td><td>{0F229122-57FB-4A4C-92B7-003A49273A7A}</td><td>INSTALLDIR</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>Locality.Primary_output</td><td>{C50B8597-6FEC-443C-AB7A-7FF7365412FA}</td><td>INSTALLDIR</td><td>2</td><td/><td>locality.primary_output</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 	</table>
 
@@ -1052,6 +1053,7 @@
 	<table name="CreateFolder">
 		<col key="yes" def="s72">Directory_</col>
 		<col key="yes" def="s72">Component_</col>
+		<row><td>INSTALLDIR</td><td>ISX_DEFAULTCOMPONENT1</td></row>
 	</table>
 
 	<table name="CustomAction">
@@ -1866,6 +1868,7 @@
 	<table name="FeatureComponents">
 		<col key="yes" def="s38">Feature_</col>
 		<col key="yes" def="s72">Component_</col>
+		<row><td>AlwaysInstall</td><td>ISX_DEFAULTCOMPONENT1</td></row>
 		<row><td>AlwaysInstall</td><td>Locality.Primary_output</td></row>
 	</table>
 
@@ -2025,6 +2028,7 @@
 		<col def="S0">FTPLocation</col>
 		<col def="S0">HTTPLocation</col>
 		<col def="S0">Miscellaneous</col>
+		<row><td>ISX_DEFAULTCOMPONENT1</td><td/><td/><td>_80F96C26_63E3_441B_AA1C_2D26E9A71CC4_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>Locality.Primary_output</td><td/><td/><td>_786AF4F0_E6D4_46DE_A24C_08E96489B4AC_FILTER</td><td/><td/><td/><td/></row>
 	</table>
 
@@ -3745,7 +3749,7 @@
 		<row><td>IDS__TargetReq_DESC_PROCESSOR</td><td>1033</td><td>The processor is not adequate for running [ProductName].</td><td>0</td><td/><td>-1121882286</td></row>
 		<row><td>IDS__TargetReq_DESC_RAM</td><td>1033</td><td>The amount of RAM is not adequate for running [ProductName].</td><td>0</td><td/><td>-1121882286</td></row>
 		<row><td>IDS__TargetReq_DESC_RESOLUTION</td><td>1033</td><td>The screen resolution is not adequate for running [ProductName].</td><td>0</td><td/><td>-1121882286</td></row>
-		<row><td>ID_STRING1</td><td>1033</td><td>http://www.EugenePankov.com</td><td>0</td><td/><td>-1121871725</td></row>
+		<row><td>ID_STRING1</td><td>1033</td><td>http://github.com/Eugeny/Locality</td><td>0</td><td/><td>1705062625</td></row>
 		<row><td>ID_STRING2</td><td>1033</td><td>Eugene Pankov</td><td>0</td><td/><td>-1121871725</td></row>
 		<row><td>ID_STRING3</td><td>1033</td><td>Locality</td><td>0</td><td/><td>-853431180</td></row>
 		<row><td>IIDS_UITEXT_FeatureUninstalled</td><td>1033</td><td>This feature will remain uninstalled.</td><td>0</td><td/><td>-1121882286</td></row>
@@ -3989,7 +3993,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<row><td>ISTheme</td><td>InstallShield Blue.theme</td></row>
 		<row><td>ISUSLock</td><td>{E1B4C2C0-5F2B-46F4-A1EC-1977A56183BC}</td></row>
 		<row><td>ISUSSignature</td><td>{3E20FCAC-CFDC-4DFC-BF0B-30D201E03B7A}</td></row>
-		<row><td>ISVisitedViews</td><td>viewProject,viewAssistant,viewRelease,viewSystemSearch,viewAppFiles,viewFeatureFiles,viewShortcuts,viewDesignPatches,viewUI,viewSetupTypes,viewRealSetupDesign,viewUpdateService,viewUpgradePaths,viewBillboards,viewTextMessages,viewObjects,viewAppV</td></row>
+		<row><td>ISVisitedViews</td><td>viewProject,viewAssistant,viewRelease,viewSystemSearch,viewAppFiles,viewFeatureFiles,viewShortcuts,viewDesignPatches,viewUI,viewSetupTypes,viewRealSetupDesign,viewUpdateService,viewUpgradePaths,viewBillboards,viewTextMessages,viewObjects,viewAppV,viewRegistry,viewCustomActions</td></row>
 		<row><td>Limited</td><td>1</td></row>
 		<row><td>LockPermissionMode</td><td>1</td></row>
 		<row><td>MsiExecCmdLineOptions</td><td/></row>

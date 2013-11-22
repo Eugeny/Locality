@@ -23,15 +23,12 @@ namespace Locality.Conditions
         public Location Location = new Location();
         private Pushpin pin;
 
-        public LocationSelector()
+        public LocationSelector(double lat, double lon)
         {
             InitializeComponent();
             var center = new Location();
-            if (LocationCondition.LastCoordinates != null)
-            {
-                center.Latitude = LocationCondition.LastCoordinates.Location.Latitude;
-                center.Longitude = LocationCondition.LastCoordinates.Location.Longitude;
-            }
+            center.Latitude = lat;
+            center.Longitude = lon;
             Map.Center = center;
             Map.ZoomLevel = 15;
             pin = new Pushpin();

@@ -63,8 +63,8 @@ namespace Locality.Conditions
 
             if (LastCoordinates != null)
             {
-                var lat = Double.Parse((string)space.Parameters.SetDefault(LatKey, "0.0"));
-                var lon = Double.Parse((string)space.Parameters.SetDefault(LonKey, "0.0"));
+                var lat = Double.Parse((string)space.Parameters.SetDefault(LatKey, "0"));
+                var lon = Double.Parse((string)space.Parameters.SetDefault(LonKey, "0"));
                 var d = Between(LastCoordinates.Location, lat, lon);
                 if (d < Double.Parse((string)space.Parameters.SetDefault(DistanceKey, "100")))
                 {
@@ -84,8 +84,8 @@ namespace Locality.Conditions
             }
             else
             {
-                space.Parameters.SetDefault(LatKey, "0.0");
-                space.Parameters.SetDefault(LonKey, "0.0");
+                space.Parameters.SetDefault(LatKey, "0");
+                space.Parameters.SetDefault(LonKey, "0");
             }
             space.Parameters.SetDefault(DistanceKey, "100");
             space.Parameters.SetDefault(NameKey, "Location not set");
